@@ -3,8 +3,6 @@ import datetime
 import pandas as pd
 import numpy as np
 
-def convert_1d_to_2d(l, cols):
-    return [l[i:i + cols] for i in range(0, len(l), cols)]
 
 # サイドバーにページ選択のセレクトボックスを作成
 page = st.sidebar.selectbox("ページを選択してください", ["入力", "グラフ出力"])
@@ -12,7 +10,7 @@ page = st.sidebar.selectbox("ページを選択してください", ["入力", "
 price = []
 date = []
 all_data = []
-
+a=[[]]
 # 選択されたページを表示
 if page == "入力":
     st.title("入力したデータをグラフにする")
@@ -35,8 +33,11 @@ if page == "入力":
         month = d.month
         day = d.day
         edit_date = f"{year}-{month}-{day}"
+        b = [edit_date, place]
+        a.append(b)
+        print(a)
         
-        all_data.extend([place, edit_date])
+        
         
         st.write(all_data)
 
@@ -52,10 +53,11 @@ if page == "入力":
 
 
 elif page == "グラフ出力":
-    two_array = convert_1d_to_2d(all_data, 2)
+    hoge=[['12/1','9999'],['12/5','11111']]
     data = pd.DataFrame(
-
+        hoge,columns=['日付','値段']
     )
     print(data)
     st.write('折れ線グラフ:')
+    
     st.line_chart(data.set_index("日付"))
