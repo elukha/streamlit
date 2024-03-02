@@ -36,7 +36,6 @@ if page == "入力":
         print(b)
         a.append(b)
         print(a)
-        st.write(a)
 
     # 入力した要素をクリアする。
     def remove_data():
